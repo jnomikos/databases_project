@@ -74,7 +74,6 @@
   include "credentials.php";
 
   try { 
-    $dsn = "mysql:host=courses;dbname=z085969";
     $pdo = new PDO($dsn, $username, $password);
     
     //Set Error Mode to Exception
