@@ -5,6 +5,22 @@ pages/functionalities of the site and give some guidance as to how I set things 
 Stuff like forms are all 'functional' despite not connecting to the database or doing
 any validation... they're all set up to be used as-is. 
 
+## Database
+
+If you just upload this as-is to your student account, and run the sql files to create the database,
+the products page/product landing page won't work as it's set up to use my credentials. 
+
+I do this with a **separate file**, credentials.php.
+It's in this format: you need to create a credentials.php and change it to use your zid and password.
+
+> `<?php`
+>   `$username = "z123456";`
+>   `$password = "YYYYMmmDD";`
+>   `$dsn = "mysql:host=courses;dbname=z123456";`
+. `?>`
+
+That should be the only thing you need to do.
+
 ## General
 
 I tried to design the skeleton so that we can all individually work on pieces and they'll
