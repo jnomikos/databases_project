@@ -90,12 +90,21 @@ You can check whether a customer is logged in with
 List of things we have left to do: putting an X next to pieces that are done/mostly done 
 
 Implement Products Page X
+
 Implement Product landing page with add-to-cart functionality X
+
 Implement full adjustable cart 
+
 Implement real log in
+
 Implement real owner login
+
 Implement checkout functionality
+
 Implement owner dashboard for orders 
+
 Implement owner dashboard for products 
+
 Implement order tracking 
+
 More?
