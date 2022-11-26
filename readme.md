@@ -5,20 +5,6 @@ pages/functionalities of the site and give some guidance as to how I set things 
 Stuff like forms are all 'functional' despite not connecting to the database or doing
 any validation... they're all set up to be used as-is. 
 
-## Database
-
-If you just upload this as-is to your student account, and run the sql files to create the database,
-the products page/product landing page won't work as it's set up to use my credentials. 
-
-I do this with a credentials.php file. I've included one that's in the right format, but you need
-to change:
-
-'$username' to your zid
-'$password' to your MariaDB password 
-'$dsn' to show your correct zid.
-
-That should be the only thing you need to do.
-
 ## General
 
 I tried to design the skeleton so that we can all individually work on pieces and they'll
@@ -95,15 +81,15 @@ Implement Product landing page with add-to-cart functionality X
 
 Implement full adjustable cart 
 
-Implement real log in
+Implement real log in X
 
-Implement real owner login
+Implement real owner login X
 
 Implement checkout functionality
 
 Implement owner dashboard for orders 
 
-Implement owner dashboard for products 
+Implement owner dashboard for products X
 
 Implement order tracking 
 

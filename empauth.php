@@ -14,18 +14,36 @@
           integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous">
   </script>
 <?php 
-  session_start();
+  include "credentials.php";
+
+  try { 
   
-  $email = $_POST['inputemail'];
-  
-  if($email == "fake@email.com")
-  {
-    $_SESSION['owner']=$email;
-    header("Location:dashboard.php");
+    session_start();
+    
+    $pdo = new PDO($dsn, $username, $password);
+    
+    //Set Error Mode to Exception
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    
+    //Query and fetch data
+    $email = $_POST['inputemail'];
+    $rs = $pdo->prepare("SELECT * FROM Owner WHERE Email = ?;");
+    $rs->execute(array($email));
+    $ownerdata = $rs->fetchAll(PDO::FETCH_ASSOC);
+    
+    if($ownerdata)
+    {
+      $_SESSION['owner']=$email;
+      header("Location:dashboard.php");
+    }
+    else 
+    {
+      echo "Invalid email address.";
+    }
   }
-  else 
+  catch(PDOexception $e) 
   {
-    echo "Invalid email address.";
+    echo "Connection to database failed: " . $e->getMessage();
   }
 ?>
 </body>

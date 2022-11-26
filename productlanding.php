@@ -73,9 +73,9 @@
   <?php
   include "credentials.php";
 
-  try { 
+  try 
+  { 
     $pdo = new PDO($dsn, $username, $password);
-    
     //Set Error Mode to Exception
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
@@ -113,7 +113,8 @@
     }
   }
 
-  catch(PDOexception $e) {
+  catch(PDOexception $e) 
+  {
     echo "Connection to database failed: " . $e->getMessage();
   }
   ?>
