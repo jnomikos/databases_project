@@ -24,6 +24,7 @@ CREATE TABLE Product (
     Num_Stock int NOT NULL,
     Price decimal(10,2) NOT NULL,
     OwnerID int NOT NULL,
+    Details varchar(500) DEFAULT "No description",
     FOREIGN KEY (OwnerID) REFERENCES Owner(OwnerID)
 );
 
@@ -34,7 +35,7 @@ CREATE TABLE Orders (
     Shipped boolean NOT NULL,
     ShippingAddress varchar(50) NOT NULL,
     CreditCard varchar(50) NOT NULL,
-
+    ShippingTracking varchar(16) DEFAULT "Unassigned",
     FOREIGN KEY (CustomerID) REFERENCES Customer(CustomerID)
 );
 
