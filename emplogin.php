@@ -62,15 +62,14 @@
       </div>
     </div>
   </nav>
-
-  <!-- Employee login form -->
+  <!-- Owner Login form -->
   <div class="container-fluid w-50">
-    <form action="empauth.php" method="post">
+    <form action="ownerauth.php" method="post">
       <div class="mb-3 col offset-md-1">
         <label for="inputemail" class="form-label">Email address</label>
         <input type="email" class="form-control" name="inputemail">
-        <div id="emailcaption" class="form-text">Employees login here</div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <div id="emailcaption" class="form-text">Employees/Owners login here</div>
+        <button type="submit" class="btn btn-primary">Login</button>
       </div>
     </form>
   </div>

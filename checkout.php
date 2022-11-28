@@ -15,10 +15,53 @@
   </script>
   <nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid">
-      <img src="logoipsum.png">
+      <a class="navbar-brand" href="index.php"><img src="logoipsum.png"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" 
+	          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="index.php">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="products.php">Products</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Cart</a>
+          </li>
+          <li class="nav-item">
+          <?php
+            session_start();
+            if(!isset($_SESSION['user']))
+            {
+              echo "<a class=\"nav-link\" href=\"login.php\">Login</a>";
+            }
+            else
+            {
+              echo "<a class=\"nav-link\" href=\"logout.php\">Logout</a>";
+            }
+          ?>          </li>
+        </ul>
+        <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+          <?php
+            if(!isset($_SESSION['user']))
+            {
+              echo "<a class=\"nav-link\" href=\"emplogin.php\">Owner Login</a>";
+            }
+            else
+            {
+              echo "<a class=\"nav-link\" href=\"tracking.php\">Order Tracking</a>"; 
+            }
+          ?>
+          </li>
+        </ul>
+      </div>
     </div>
   </nav>
-
+  
   <!-- Checkout display form -->
   <div class="container-fluid bg-light text-dark text-center border-top border-bottom w-50">
     <h2>Checkout:</h2>

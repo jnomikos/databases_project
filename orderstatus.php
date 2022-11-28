@@ -11,11 +11,10 @@
 
 <body>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" 
-          integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous">
-  </script>
+          integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
   <nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid">
-      <a class="navbar-brand" href="index.php"><img src="logoipsum.png"></a>
+      <a class="navbar-brand" href="#"><img src="logoipsum.png"></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" 
 	          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -23,7 +22,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link" href="index.php">Home</a>
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="products.php">Products</a>
@@ -76,10 +75,9 @@
     </div>
   </nav>
 
-  <!-- Here's where the orders and related info go -->
-  <!-- Need to query the DB based on user email and list all orders with their status -->
+
   <div class="container-fluid w-50">
-    <h3>Order # suchandsuch. Tracking number suchandsuch. Status suchandsuch.</h3>
+    <h3>Order status is such and such.</h3>
   </div>
 </body>
 

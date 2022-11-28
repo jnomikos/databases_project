@@ -31,11 +31,7 @@
   </nav>
 
   <div class="container-fluid bg-light text-dark text-center border-top border-bottom">
-    <h1>Dashboard</h1>
-    <a class = "nav-link" href="inventory.php"><u>Inventory</u></a>
-    <br>
-    <a class = "nav-link" href="emporders.php"><u>Orders</u></a>
-    <br>
+    <h1>Order Dashboard</h1>
     
   </div>
 </body>
