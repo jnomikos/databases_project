@@ -71,7 +71,7 @@
         <img class= \"img-fluid\" src=\"cart.jpg\">
         <div class=\"container-fluid bg-light text-dark border-top border-bottom w-50\">
           <h2>Checkout</h2>
-            <p>Your total is: . $qty .</p>
+            <p>Your total is: where total $ is stored</p>
           <form action=\"submitorder.php\" method=\"post\">
             <div class=\"mb-3\">
               <label for=\"inputaddr\" class=\"form-label\">Shipping address</label>
