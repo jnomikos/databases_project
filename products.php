@@ -104,12 +104,13 @@
       {
         $newrow = TRUE;
       }
-      
+      //print_r($product);
       echo "<div class=\"col\">";
         echo "<form action=\"productlanding.php\" method=\"get\">";
-          echo "<input type=\"hidden\" id=\"productid\" name=\"productid\" value=\"" . $product['ProductID'] . "\">";
-          echo "<input type=\"image\" src=\"productimg\product" . $product['ProductID'] . ".jpg\" class=\"img-fluid\">";
-          echo "<p>" . $product['ProductName'] . " by " . $product['Brand'] . ": click for more details </p>";
+          echo "<input type=\"hidden\" id=\"productid\" name=\"productid\" value=\"" . $product['ProductID'] . "\"/>";
+          echo "<input type=\"image\" src=\"productimg\product" . $product['ProductID'] . ".jpg\" class=\"img-fluid\"/>";
+          echo "<p>$" . $product['Price'] . "<br/>";
+          echo $product['ProductName'] . " by " . $product['Brand'] . ": click for more details </p>";
         echo "</form>";
       echo "</div>";
       if ($newrow)
