@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!doctype html>
 <html lang="en">
 
@@ -33,7 +34,6 @@
           </li>
           <li class="nav-item">
           <?php
-            session_start();
             if(!isset($_SESSION['user']))
             {
               echo "<a class=\"nav-link\" href=\"login.php\">Login</a>";
@@ -76,20 +76,22 @@
           unset($_SESSION['cart'][$rmpid]);
         }
         if(isset($_SESSION['cart']) && !empty($_SESSION['cart']))
-        {
-          foreach($_SESSION['cart'] as $itemid => $numincart)
+        {                            // key    => value
+          foreach($_SESSION['cart'] as $itemid => $item)
           {
-            echo $numincart . " of item: " . $itemid;
+            echo "<h2>" . $item['qty'] . " " . $item['name'] . "</h2>";
+            $item_price = $item['qty'] * $item['price'];
+            echo "<h3>$" . $item["price"] . "</h3>";
             echo "<form method=\"post\">";
             echo "<input type=\"submit\" ";
             echo "name=\"remove_cart\" value=\"Remove From Cart\"\>";
             echo "<input type=\"hidden\" name=\"rmvid\" value=\"" . $itemid . "\"";
-            echo "<br>";
+            echo "<br/>";
             echo "</form>";
           }
-          echo "<br>";
+          echo "<br/>";
           echo "<a class=\"btn btn-success\" href=\"checkout.php\" role=\"button\">Check Out</a>";
-          echo "<br>";
+          echo "<br/>";
         }
         else
         {
