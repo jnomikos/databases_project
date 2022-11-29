@@ -71,11 +71,21 @@
     <!-- Generate cart -->
     <div class="container-fluid bg-light text-dark text-center border-top border-bottom">
       <?php
-        if(isset($_SESSION['cart']))
+        if(isset($_POST['remove_cart']) && isset($_POST['rmvid'])) {
+          $rmpid = $_POST['rmvid'];
+          unset($_SESSION['cart'][$rmpid]);
+        }
+        if(isset($_SESSION['cart']) && !empty($_SESSION['cart']))
         {
           foreach($_SESSION['cart'] as $itemid => $numincart)
           {
-            echo $numincart . " of item: " . $itemid . "<br>";
+            echo $numincart . " of item: " . $itemid;
+            echo "<form method=\"post\">";
+            echo "<input type=\"submit\" ";
+            echo "name=\"remove_cart\" value=\"Remove From Cart\"\>";
+            echo "<input type=\"hidden\" name=\"rmvid\" value=\"" . $itemid . "\"";
+            echo "<br>";
+            echo "</form>";
           }
           echo "<br>";
           echo "<a class=\"btn btn-success\" href=\"checkout.php\" role=\"button\">Check Out</a>";
