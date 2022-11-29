@@ -79,13 +79,20 @@
     {
       $pid = $_POST['productid'];
       $qty = $_POST['quantity'];
+      $price = $_POST['price'];
+      $name = $_POST['productname'];
       if (isset($_SESSION['cart'][$pid]))
       {
-        $_SESSION['cart'][$pid] += $qty;
+        // Adds qty to the quantity
+        $_SESSION['cart'][$pid]['qty'] += $qty;
       }
       else 
       {
-        $_SESSION['cart'][$pid] = $qty;
+        // Scary 3 dimensional array
+        // The third dimension is an array that contains two values
+        // 'qty' and 'price'
+        $_SESSION['cart'][$pid] = array("qty" => $qty, "price" => $price, "name" => $name);
+
       }
       echo "<p class=\"display-3 text-center\">" . $qty . " added to cart. </p>"; 
     }
