@@ -83,7 +83,6 @@
     $rs = $pdo->prepare("SELECT * FROM Product WHERE ProductID = ?");
     $rs->execute(array($_GET["productid"]));
     $productinfo = $rs->fetch(PDO::FETCH_ASSOC);
-    
       
     echo "<div class=\"container-fluid bg-light text-dark text-center border-top border-bottom\">";
     echo "<div class=\"row\">";
@@ -102,13 +101,15 @@
     if(isset($_SESSION['user']))
     {
       echo "<form action=\"addtocart.php\" method=\"post\">";
-        echo "<input type=\"hidden\" name=\"productid\" value=\"" . $productinfo['ProductID'] . "\"";
+        echo "<input type=\"hidden\" name=\"productid\" value=\"" . $productinfo['ProductID'] . "\"/>";
+        echo "<input type=\"hidden\" name=\"price\" value=\"" . $productinfo['Price'] . "\"/>";
+        echo "<input type=\"hidden\" name=\"productname\" value=\"" . $productinfo['ProductName'] . "\"/>";
         echo "<label for=\"quantity\">Quantity:</label>";
-        echo "<input type=\"number\" name=\"quantity\" id=\"quantity\" value =\"0\" min=\"0\">";
+        echo "<input type=\"number\" name=\"quantity\" id=\"quantity\" value =\"0\" min=\"0\"/>";
         echo "<br>";
     
       //Submit Button
-        echo "<input type=\"submit\" value=\"Add To Cart\">";
+        echo "<input type=\"submit\" value=\"Add To Cart\"/>";
       echo "</form>";
     }
   }
