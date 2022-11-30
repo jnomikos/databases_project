@@ -61,6 +61,30 @@
       <div class="mb-3 col offset-md-1">
         <label for="inputemail" class="form-label">Email address</label>
         <input type="email" class="form-control" name="inputemail">
+        <label for="inputowner" class="form-label">Shop To Login To</label>
+        <select name="inputowner" class="form-control" name="inputowner">
+        <?php
+          include "credentials.php";
+          session_start();
+          
+          $pdo = new PDO($dsn, $username, $password);
+          
+          //Set Error Mode to Exception
+          $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+          
+          //Query the database
+          $sql = "SELECT * FROM Owner;";
+          $rs = $pdo->query($sql);
+          $ownerslist = $rs->fetchAll(PDO::FETCH_ASSOC);
+          
+          foreach ($ownerslist as $owner)
+          {
+            echo "<option value=\"" . $owner['OwnerID'] . "\">" . $owner['OwnerName'] . "</option>";
+          }
+        ?>
+        </select>
+        
+        
         <div id="emailcaption" class="form-text">We probably won't sell your data.</div>
         <button type="submit" class="btn btn-primary">Submit</button>
       </div>

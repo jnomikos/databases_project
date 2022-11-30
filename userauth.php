@@ -34,6 +34,7 @@
     if($userdata)
     {
       $_SESSION['user']=$email;
+      $_SESSION['shop']=$_POST['inputowner'];
       header("Location:index.php");
     }
     else 
