@@ -63,22 +63,43 @@
   </nav>
   
   <!-- Checkout display form -->
-  <div class="container-fluid bg-light text-dark text-center border-top border-bottom w-50">
-    <h2>Checkout:</h2>
-    <h4>Your total is: some dollars</h4>
-    <form action="submitorder.php" method="post">
-      <div class="mb-3">
-        <label for="inputaddr" class="form-label">Shipping address</label>
-        <input type="text" class="form-control" name = "inputaddr">
-        <br>
-        <label for="inputcc" class="form-label">Credit Card Number</label>
-        <input type="text" class="form-control" name = "inputcc">
-        <br>
-      <button type="submit" class="btn btn-success">Submit</button>
-    </form>
-    
-  </div>
+  <?php
+    if(isset($_SESSION['cart']) && !empty($_SESSION['cart']))
+    {
+      if(isset($_SESSION['cart']) && !empty($_SESSION['cart']))
+        {                            // key    => value
+          foreach($_SESSION['cart'] as $itemid => $item)
+          {
+            $item_price = $item['qty'] * $item['price'];
+          }
+        }
+        else
+        {
+          echo "<p class=\"display-3\"> Cart is empty. </p>";
+        }
 
-</body>
+      echo "<div class=\"text-center\">
+        <img class= \"img-fluid\" src=\"cart.jpg\">
+        <div class=\"container-fluid bg-light text-dark border-top border-bottom w-50\">
+          <h2>Checkout</h2>
+            <p>Your total is: $" . $item_price . "</p>
+          <form action=\"submitorder.php\" method=\"post\">
+            <div class=\"mb-3\">
+              <label for=\"inputaddr\" class=\"form-label\">Shipping address</label>
+                <input type=\"text\" class=\"form-control\" name = \"inputaddr\">
+                <br>
+                <label for=\"inputcc\" class=\"form-label\">Credit Card Number</label>
+                <input type=\"text\" class=\"form-control\" name = \"inputcc\"><br>
+                <button type=\"submit\" class=\"btn btn-success\">Check Out</button>
+                </form>
+                </div>
+                </div>
+                </body>; ";
+    }
+    else
+    {
+      echo "<p class=\"display-3 text-center\">Please log in.</p>";
+    }
+  ?>
 
 </html>
