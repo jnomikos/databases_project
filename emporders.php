@@ -30,10 +30,72 @@
     </div>
   </nav>
 
-  <div class="container-fluid bg-light text-dark text-center border-top border-bottom">
-    <h1>Order Dashboard</h1>
-    
-  </div>
-</body>
+<?php
+include "credentials.php";
+session_start();
 
-</html>
+try
+{
+
+    $PDO = new PDO($dsn, $username, $password);
+
+    //Set Error Mode to Exception
+    $PDO->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+
+    echo "<h2>Employee Dashboard</h2>";
+
+    //An order fulfillment page that allows store employees to see details on individual orders, and mark them as shipped, add notes, contact the user, etc.
+    echo "<h3>Order Fulfillment</h3>";
+
+    $sql = "SELECT * FROM Orders, Customer where Orders.CustomerID = Customer.CustomerID AND Orders.Shipped = 0;";
+    $stmt = $PDO->prepare($sql);
+    $stmt->execute();                 //table that shows all orders to be shipped
+    echo "<h3> Orders to be Shipped </h3>";            
+    echo "<table class='table table-striped table-hover'>";
+    echo "<tr><th>Order ID</th><th>Order Date</th><th>Shipped?</th><th>Shipping Address</th><th>Tracking Number</th><th>Customer Name</th><th>Customer Email</th><th>Customer Address</th><th>Customer Phone</th></tr>";
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    echo "<tr><td>" . $row['OrderID'] . "</td><td>" . $row['OrderDate'] . "</td><td>" . $row['Shipped'] . "</td><td>" . $row['ShippingAddress'] . "</td><td>" . $row['ShippingTracking'] . "</td><td>" . $row['CustomerName'] . "</td><td>" . $row['Email'] . "</td><td>" . $row['HomeAddress'] . "</td><td>" . $row['Phone'] . "</td></tr>";
+    }
+    echo "</table>"; 
+
+    echo "<form action='setordershipped.php' method='post'>";          //form to mark order as shipped and add notes
+    echo "<label for='orderID'>Order ID: </label>";
+    echo "<input type='text' name='orderID' id='orderID'>";
+    echo "<label for='shipped'>Shipped: </label>";
+    echo "<input type='checkbox' name='shipped' id='shipped'>";
+    echo "<label for='tracking'>Tracking: </label>";
+    echo "<input type='text' name='tracking' id='tracking'>";
+    echo "<input type='submit' value='Submit'>";
+    echo "</form>";
+
+    $sql = "SELECT * FROM Orders, Customer where Orders.CustomerID = Customer.CustomerID;";
+    $stmt = $PDO->prepare($sql);
+    $stmt->execute();                 //table that shows all orders
+    echo "<h3> All Orders </h3>";            
+    echo "<table class='table table-striped table-hover'>";
+    echo "<tr><th>Order ID</th><th>Order Date</th><th>Shipped?</th><th>Shipping Address</th><th>Tracking Number</th><th>Customer Name</th><th>Customer Email</th><th>Customer Address</th><th>Customer Phone</th></tr>";
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    echo "<tr><td>" . $row['OrderID'] . "</td><td>" . $row['OrderDate'] . "</td><td>" . $row['Shipped'] . "</td><td>" . $row['ShippingAddress'] . "</td><td>" . $row['ShippingTracking'] . "</td><td>" . $row['CustomerName'] . "</td><td>" . $row['Email'] . "</td><td>" . $row['HomeAddress'] . "</td><td>" . $row['Phone'] . "</td></tr>";
+    }
+    echo "</table>";   
+    
+    $sql = "SELECT * FROM Orders;";
+    $stmt = $PDO->prepare($sql);
+    $stmt->execute();
+    echo "<h3>Contact Customer</h3>";          //form to contact customer
+    echo "<form action='emporders.php' method='post'>";
+    echo "<select name='OrderID'>";
+    echo "<option value=''>Select an Order</option>";
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    echo "<option value='" . $row['OrderID'] . "'>" . $row['OrderID'] . "</option>";
+    }
+    echo "</select>";
+    echo "<input type='submit' name='contact' value='Contact Customer'>";
+    echo "</form>";
+}
+catch(PDOexception $e) 
+{
+echo "Connection to database failed: " . $e->getMessage();
+}
+?>
