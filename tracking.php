@@ -79,8 +79,58 @@
   <!-- Here's where the orders and related info go -->
   <!-- Need to query the DB based on user email and list all orders with their status -->
   <div class="container-fluid w-50">
-    <h3>Order # suchandsuch. Tracking number suchandsuch. Status suchandsuch.</h3>
-  </div>
-</body>
+<?php
+            include('credentials.php');
 
-</html>
+    $PDO = new PDO($dsn, $username, $password);
+
+    //Set Error Mode to Exception
+    $PDO->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    //get order id info
+    echo "<h3>Order Information:</h3>";
+
+    if(isset($_SESSION['user'])){
+            $Email=$_SESSION['user'];
+            $rs = $PDO->prepare("SELECT Orders.OrderID, OrderDate, Shipped, ShippingAddress, ShippingTracking, sum(Amount * Price) AS OrderTotal FROM Customer, Product, Orders, OrderItems where OrderItems.OrderId = Orders.OrderID and Product.ProductID = OrderItems.ProductID and Orders.CustomerID = Customer.CustomerID and Customer.Email = ?;");
+            $rs->execute(array($Email));
+            $rows = $rs->fetchALL(PDO::FETCH_ASSOC);
+
+            print_r ($rows);
+
+            echo "<table border=2 cellspacing=1 cellpadding= 5>";
+            echo "<tr>";
+            foreach($rows[0] as $key => $item){
+                    echo "<th>$key</th>";
+            }
+            echo "</tr>";
+            foreach($rows as $row){
+                    echo "<tr>";
+                    foreach($row as $key => $item){
+                            echo "<td>$item</td>";
+                    }
+                    echo "</tr>";
+            }
+            echo "</table>";
+            echo "<br/>";
+
+            $rs = $PDO->prepare("SELECT sum(a.OrderTotal) AS Total_Of_All_Orders FROM (SELECT Orders.OrderID, OrderDate, Shipped, ShippingAddress, ShippingTracking, sum(Amount * Price) AS OrderTotal FROM Customer, Product, Orders, OrderItems where OrderItems.OrderId = Orders.OrderID and Product.ProductID = OrderItems.ProductID and Orders.CustomerID = Customer.CustomerID and Customer.Email = '$Email') AS a");
+            $rs->execute();
+            $rows = $rs->fetchALL(PDO::FETCH_ASSOC);
+
+            echo "<table border=2 cellspacing=1 cellpadding=5>";
+            echo "<tr>";
+            foreach($rows[0] as $key => $item){
+                    echo "<th>$key</th>";
+            }
+            echo "</tr>";
+            foreach($rows as $row){
+                    echo "<tr>";
+                    foreach($row as $key => $item){
+                            echo "<td>$item</td>";
+                    }
+                    echo "</tr>";
+            }
+            echo "</table>";
+    }
+?>
