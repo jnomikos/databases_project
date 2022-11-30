@@ -31,7 +31,7 @@ CREATE TABLE Product (
 CREATE TABLE Orders (
     OrderID int AUTO_INCREMENT PRIMARY KEY,
     CustomerID int NOT NULL,
-    OrderDate date NOT NULL,
+    OrderDate datetime NOT NULL,
     Shipped boolean NOT NULL,
     ShippingAddress varchar(50) NOT NULL,
     CreditCard varchar(50) NOT NULL,
