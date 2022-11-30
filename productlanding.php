@@ -105,7 +105,7 @@
         echo "<input type=\"hidden\" name=\"price\" value=\"" . $productinfo['Price'] . "\"/>";
         echo "<input type=\"hidden\" name=\"productname\" value=\"" . $productinfo['ProductName'] . "\"/>";
         echo "<label for=\"quantity\">Quantity:</label>";
-        echo "<input type=\"number\" name=\"quantity\" id=\"quantity\" value =\"0\" min=\"0\"/>";
+        echo "<input type=\"number\" name=\"quantity\" id=\"quantity\" value =\"0\" min=\"0\" max=\"" . $productinfo['Num_Stock'] . "\"/>";
         echo "<br>";
     
       //Submit Button
