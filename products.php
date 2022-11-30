@@ -85,8 +85,19 @@
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
     //Query and fetch data
-    $sql = "SELECT * FROM Product WHERE Num_Stock > 0";
-    $rs = $pdo->query($sql);
+    if(isset($_SESSION['user']))
+    {
+      $sql = "SELECT * FROM Product WHERE Num_Stock > 0 AND OwnerID = ?;";
+      $rs = $pdo->prepare($sql);
+      $rs->execute(array($_SESSION['shop']));
+    }
+    else
+    {
+      $sql = "SELECT * FROM Product WHERE Num_Stock > 0;";
+      $rs = $pdo->prepare($sql);
+      $rs->execute(array());
+    }
+
     $productslist = $rs->fetchAll(PDO::FETCH_ASSOC);
     
     echo "<div class=\"container-fluid bg-light text-dark text-center border-top border-bottom\">";
