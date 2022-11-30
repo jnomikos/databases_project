@@ -62,6 +62,9 @@
         $stmt = $pdo->prepare($sql);
         $stmt->execute(array($item['qty'], $itemid));
       }
+      
+      echo "<h3> Order submitted succesfully! </h3>";
+      echo "<a class = \"nav-link\" href=\"index.php\"><u>Home</u></a><br>";
 
     }
     catch(PDOexception $e) 
