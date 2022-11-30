@@ -71,9 +71,13 @@
     <!-- Generate cart -->
     <div class="container-fluid bg-light text-dark text-center border-top border-bottom">
       <?php
-        if(isset($_POST['remove_cart']) && isset($_POST['rmvid'])) {
-          $rmpid = $_POST['rmvid'];
+        if(isset($_POST['remove_cart']) && isset($_POST['itemid'])) {
+          $rmpid = $_POST['itemid'];
           unset($_SESSION['cart'][$rmpid]);
+        }
+        if(isset($_POST['modify_cart'])) {
+          $mdpid = $_POST['prodid'];
+          $_SESSION['cart'][$mdpid]['qty'] = $_POST['modify_cart'];
         }
         if(isset($_SESSION['cart']) && !empty($_SESSION['cart']))
         {                            // key    => value
@@ -85,8 +89,20 @@
             echo "<form method=\"post\">";
             echo "<input type=\"submit\" ";
             echo "name=\"remove_cart\" value=\"Remove From Cart\"\>";
-            echo "<input type=\"hidden\" name=\"rmvid\" value=\"" . $itemid . "\"";
+            echo "<input type=\"hidden\" name=\"itemid\" value=\"" . $itemid . "\"/>";
             echo "<br/>";
+            echo "</form>";
+            echo "<form method=\"post\">";
+            echo "<input type=\"hidden\" name=\"prodid\" value=\"" . $itemid . "\"/>";
+            echo "<select onchange=\"this.form.submit()\" name=\"modify_cart\" value=\"modify_cart\">";
+            for($count = 1 ; $count <= $item['max_qty'] ; $count++) {
+              echo "<option value=\"" . $count . "\"";
+              if($count == $item['qty']) {
+                echo " selected ";
+              }
+              echo ">" . $count . "</option>";
+            }
+            echo "</select>";
             echo "</form>";
           }
           echo "<br/>";
