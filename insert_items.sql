@@ -11,27 +11,27 @@ INSERT INTO Customer (CustomerName, Email, Phone, HomeAddress) VALUES
 ('Smith', 'smith@gmail.com', '1472583690', '128 Main St'),
 ('Sally', 'sally@gmail.com', '9876543210', '129 Main St');
 
-INSERT INTO Product (ProductName, Brand, Num_stock, Price, OwnerID) VALUES 
-('Shoes', 'Nike', 10, 50.00, 1),
-('Shoes', 'Puma', 10, 50.00, 2),
-('Shoes', 'Under Armour', 10, 50.00, 3),
-('Shoes', 'Adidas', 10, 50.00, 4),
-('Shirt', 'Nike', 10, 25.00, 1),
-('Shirt', 'Puma', 10, 25.00, 2),
-('Shirt', 'Under Armour', 10, 25.00, 3),
-('Shirt', 'Adidas', 10, 25.00, 4),
-('Pants', 'Nike', 10, 30.00, 1),
-('Pants', 'Puma', 10, 30.00, 2),
-('Pants', 'Under Armour', 10, 30.00, 3),
-('Pants', 'Adidas', 10, 30.00, 4),
-('Socks', 'Nike', 10, 10.00, 1),
-('Socks', 'Puma', 10, 10.00, 2),
-('Socks', 'Under Armour', 10, 10.00, 3),
-('Socks', 'Adidas', 10, 10.00, 4),
-('Hats', 'Nike', 10, 15.00, 1),
-('Hats', 'Puma', 10, 15.00, 2),
-('Hats', 'Under Armour', 10, 15.00, 3),
-('Hats', 'Adidas', 10, 15.00, 4);
+INSERT INTO Product (ProductName, Brand, Num_stock, Price, OwnerID, Details) VALUES 
+('Shoes', 'Nike', 10, 50.00, 1, 'Some Nike Shoes'),
+('Shoes', 'Puma', 10, 50.00, 2, 'Some Puma Kicks'),
+('Shoes', 'Under Armour', 10, 50.00, 3, 'Some UA Kicks'),
+('Shoes', 'Adidas', 10, 50.00, 4, 'Pair of Adidas Shoes'),
+('Shirt', 'Nike', 10, 25.00, 1, 'Nice NIKE Shirt'),
+('Shirt', 'Puma', 10, 25.00, 2, 'Puma T-Shirt'),
+('Shirt', 'Under Armour', 10, 25.00, 3, 'A UA Shirt'),
+('Shirt', 'Adidas', 10, 25.00, 4, 'Adidas Shirt'),
+('Pants', 'Nike', 10, 30.00, 1, 'Some Nike Pants'),
+('Pants', 'Puma', 10, 30.00, 2, 'Pair of Puma Pants'),
+('Pants', 'Under Armour', 10, 30.00, 3, 'Some UA Pants'),
+('Pants', 'Adidas', 10, 30.00, 4, 'ADIDAS Pants'),
+('Socks', 'Nike', 10, 10.00, 1, 'Nike Socks'),
+('Socks', 'Puma', 10, 10.00, 2, 'Pair of Puma Socks'),
+('Socks', 'Under Armour', 10, 10.00, 3, 'Some UA Socks'),
+('Socks', 'Adidas', 10, 10.00, 4, 'ADIDAS Socks'),
+('Hats', 'Nike', 10, 15.00, 1, 'Nike Cap'),
+('Hats', 'Puma', 10, 15.00, 2, 'Puma Hat'),
+('Hats', 'Under Armour', 10, 15.00, 3, 'Under Armour Hat'),
+('Hats', 'Adidas', 10, 15.00, 4, 'ADIDAS Hat');
 
 
 INSERT INTO Orders(CustomerID, OrderDate, Shipped, ShippingAddress, CreditCard) VALUES 
