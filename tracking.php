@@ -92,11 +92,12 @@
 
     if(isset($_SESSION['user'])){
             $Email=$_SESSION['user'];
-            $rs = $PDO->prepare("SELECT Orders.OrderID, OrderDate, Shipped, ShippingAddress, ShippingTracking, sum(Amount * Price) AS OrderTotal FROM Customer, Product, Orders, OrderItems where OrderItems.OrderId = Orders.OrderID and Product.ProductID = OrderItems.ProductID and Orders.CustomerID = Customer.CustomerID and Customer.Email = ?;");
+            $rs = $PDO->prepare("SELECT Orders.OrderID, OrderDate, Shipped, ShippingAddress, ShippingTracking, sum(Amount * Price) AS OrderTotal 
+            FROM Customer, Product, Orders, OrderItems 
+            WHERE OrderItems.OrderId = Orders.OrderID AND Product.ProductID = OrderItems.ProductID AND Orders.CustomerID = Customer.CustomerID AND Customer.Email = ?
+            GROUP BY OrderItems.OrderId;");
             $rs->execute(array($Email));
             $rows = $rs->fetchALL(PDO::FETCH_ASSOC);
-
-            print_r ($rows);
 
             echo "<table border=2 cellspacing=1 cellpadding= 5>";
             echo "<tr>";
