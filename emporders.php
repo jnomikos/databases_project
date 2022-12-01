@@ -84,7 +84,7 @@ try
     $stmt = $PDO->prepare($sql);
     $stmt->execute();
     echo "<h3>Contact Customer</h3>";          //form to contact customer
-    echo "<form action='mailto:'" . $row['Email'] . " method='post'>";
+    echo "<form action='contactcustomer.php' method='post'>";
     echo "<select name='OrderID'>";
     echo "<option value=''>Select an Order</option>";
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -93,6 +93,7 @@ try
     echo "</select>";
     echo "<input type='submit' name='contact' value='Contact Customer'>";
     echo "</form>";
+
 }
 catch(PDOexception $e) 
 {
