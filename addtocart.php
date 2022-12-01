@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="en">
-
 <!-- ********************************
      * CSCI 466 Databases Fall 2022 *
      *                              *
@@ -94,6 +93,7 @@
       $qty = $_POST['quantity'];
       $price = $_POST['price'];
       $name = $_POST['productname'];
+      $max_qty = $_POST['max_qty'];
       if (isset($_SESSION['cart'][$pid]))
       {
         // Adds qty to the quantity
@@ -104,7 +104,7 @@
         // Scary 3 dimensional array
         // The third dimension is an array that contains two values
         // 'qty' and 'price'
-        $_SESSION['cart'][$pid] = array("qty" => $qty, "price" => $price, "name" => $name);
+        $_SESSION['cart'][$pid] = array("qty" => $qty, "price" => $price, "name" => $name, 'max_qty' => $max_qty);
 
       }
       echo "<p class=\"display-3 text-center\">" . $qty . " added to cart. </p>"; 

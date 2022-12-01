@@ -1,18 +1,6 @@
 <!doctype html>
 <html lang="en">
-<!-- ********************************
-     * CSCI 466 Databases Fall 2022 *
-     *                              *
-     * Jacob Fitzenreider z085969   *
-     * Matthew Keisel     z1865716  *
-     * Kendrick Hardy     z1945923  *
-     * Alec Tipton        z1938927  *
-     * John Nomikos       z1934599  *
-     *                              *
-     * Group Project                *
-     * Due 11/30/2022               *
-     ********************************/
--->
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">

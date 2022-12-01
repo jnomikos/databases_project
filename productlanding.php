@@ -104,20 +104,29 @@
       echo "<div class=\"col\">";
         echo "<p class=\"display-3 text-center\">" . $productinfo['ProductName'] . " by " . $productinfo['Brand'];
         echo "</p>";
-        echo "<p class=\"lead text-center\">" . $productinfo['Details'] . "</p>";
+        echo "<p class=\"lead text-center\"> product Information goes in here </p>";
         echo "<p class=\"display-3 text-center\">\$" . $productinfo['Price'];
         echo "<p class=\"display-6 text-center\">" . $productinfo['Num_Stock'] . " left in stock. Order now!";
       echo "</div>"; 
     echo "</div>";
-    
+
     if(isset($_SESSION['user']))
     {
+      $pid = $productinfo['ProductID'];
+      if (isset($_SESSION['cart'][$pid]) && !empty($_SESSION['cart']))
+      {
+        $maximum_allowed = $productinfo['Num_Stock'] - $_SESSION['cart'][$pid]['qty'];
+      } else {
+        $maximum_allowed = $productinfo['Num_Stock'];
+      }
+      
       echo "<form action=\"addtocart.php\" method=\"post\">";
         echo "<input type=\"hidden\" name=\"productid\" value=\"" . $productinfo['ProductID'] . "\"/>";
         echo "<input type=\"hidden\" name=\"price\" value=\"" . $productinfo['Price'] . "\"/>";
+        echo "<input type=\"hidden\" name=\"max_qty\" value=\"" . $productinfo['Num_Stock'] . "\"/>";
         echo "<input type=\"hidden\" name=\"productname\" value=\"" . $productinfo['ProductName'] . "\"/>";
         echo "<label for=\"quantity\">Quantity:</label>";
-        echo "<input type=\"number\" name=\"quantity\" id=\"quantity\" value =\"0\" min=\"0\"/>";
+        echo "<input type=\"number\" name=\"quantity\" id=\"quantity\" value =\"0\" min=\"0\" max=\"" . $maximum_allowed . "\"/>";
         echo "<br>";
     
       //Submit Button
