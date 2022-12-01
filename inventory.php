@@ -1,6 +1,18 @@
 <!doctype html>
 <html lang="en">
-
+<!-- ********************************
+     * CSCI 466 Databases Fall 2022 *
+     *                              *
+     * Jacob Fitzenreider z085969   *
+     * Matthew Keisel     z1865716  *
+     * Kendrick Hardy     z1945923  *
+     * Alec Tipton        z1938927  *
+     * John Nomikos       z1934599  *
+     *                              *
+     * Group Project                *
+     * Due 11/30/2022               *
+     ********************************/
+-->
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -31,36 +43,34 @@
   </nav>
 
   <div class="container-fluid bg-light text-dark text-center border-top border-bottom">
-        <h3> Owner Inventory </h3>
-                <?php                    
-                  session_start();
-                  include "credentials.php";
-                  echo "<h3>Owner ID: " . $_SESSION['owner'] . "</h3>";
-                  try { 
-      
-                    $pdo = new PDO($dsn, $username, $password);
-                    
-                    //Set Error Mode to Exception
-                    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                    
-                    //Query the database
-                    $sql = "SELECT * FROM Product, Owner WHERE Product.OwnerID = Owner.OwnerID AND Owner.Email = ?;";
-                    $stmt = $pdo->prepare($sql);
-                    $stmt->execute(array($_SESSION['owner']));
-                    
-                    echo " <h4> Owner's products </h4>";
-                    echo "<table class='table table-striped table-hover'>";
-                    echo "<tr><th>Product ID</th><th>Product Name</th><th>Product Brand</th><th>Product Price</th><th>Product Quantity</th></tr>";
-                    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    echo "<tr><td>" . $row['ProductID'] . "</td><td>" . $row['ProductName'] . "</td><td>" . $row['Brand'] . "</td><td>" . $row['Price'] . "</td><td>" . $row['Num_Stock'] . "</td></tr>";
-                    }
-                    echo "</table>";
-                  }
-                  catch(PDOexception $e) 
-                  {
-                    echo "Connection to database failed: " . $e->getMessage();
-                  }
-                ?>
+  <?php
+      echo "<h2>Owners/Inventory Dashboard</h2>";        
+          session_start();
+          include "credentials.php";
+
+          echo "<h3>Owner ID: " . $_SESSION['owner'] . "</h3>";
+
+
+          $pdo = new PDO($dsn, $username, $password);
+          
+          //Set Error Mode to Exception
+          $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+          
+          //Query the database
+          $sql = "SELECT * FROM Product, Owner WHERE Product.OwnerID = Owner.OwnerID AND Owner.Email = ?;";
+          $stmt = $pdo->prepare($sql);
+          $stmt->execute(array($_SESSION['owner']));
+          
+          echo " <h4> Owner's products </h4>";
+          echo "<table class='table table-striped table-hover'>";
+          echo "<tr><th>Product ID</th><th>Product Name</th><th>Product Brand</th><th>Product Price</th><th>Product Quantity</th></tr>";
+          while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+          echo "<tr><td>" . $row['ProductID'] . "</td><td>" . $row['ProductName'] . "</td><td>" . $row['Brand'] . "</td><td>" . $row['Price'] . "</td><td>" . $row['Num_Stock'] . "</td></tr>";
+          }
+          echo "</table>";
+        
+        
+?>
             </div>
   </div>
 </body>

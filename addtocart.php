@@ -1,6 +1,19 @@
 <!doctype html>
 <html lang="en">
 
+<!-- ********************************
+     * CSCI 466 Databases Fall 2022 *
+     *                              *
+     * Jacob Fitzenreider z085969   *
+     * Matthew Keisel     z1865716  *
+     * Kendrick Hardy     z1945923  *
+     * Alec Tipton        z1938927  *
+     * John Nomikos       z1934599  *
+     *                              *
+     * Group Project                *
+     * Due 11/30/2022               *
+     ********************************/
+-->
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -81,7 +94,6 @@
       $qty = $_POST['quantity'];
       $price = $_POST['price'];
       $name = $_POST['productname'];
-      $max_qty = $_POST['max_qty'];
       if (isset($_SESSION['cart'][$pid]))
       {
         // Adds qty to the quantity
@@ -92,7 +104,7 @@
         // Scary 3 dimensional array
         // The third dimension is an array that contains two values
         // 'qty' and 'price'
-        $_SESSION['cart'][$pid] = array("qty" => $qty, "price" => $price, "name" => $name, 'max_qty' => $max_qty);
+        $_SESSION['cart'][$pid] = array("qty" => $qty, "price" => $price, "name" => $name);
 
       }
       echo "<p class=\"display-3 text-center\">" . $qty . " added to cart. </p>"; 
