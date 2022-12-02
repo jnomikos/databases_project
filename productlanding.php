@@ -104,7 +104,7 @@
       echo "<div class=\"col\">";
         echo "<p class=\"display-3 text-center\">" . $productinfo['ProductName'] . " by " . $productinfo['Brand'];
         echo "</p>";
-        echo "<p class=\"lead text-center\"> product Information goes in here </p>";
+        echo "<p class=\"lead text-center\">" . $productinfo['Details'] . "</p>";
         echo "<p class=\"display-3 text-center\">\$" . $productinfo['Price'];
         echo "<p class=\"display-6 text-center\">" . $productinfo['Num_Stock'] . " left in stock. Order now!";
       echo "</div>"; 
