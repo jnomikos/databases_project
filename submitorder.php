@@ -73,6 +73,8 @@
         $sql = "UPDATE Product SET Num_Stock = Num_Stock - ? WHERE ProductID = ?;";
         $stmt = $pdo->prepare($sql);
         $stmt->execute(array($item['qty'], $itemid));
+        // Remove item from cart after submitting it
+        unset($_SESSION['cart'][$itemid]);
       }
       
       echo "<h3> Order submitted succesfully! </h3>";
